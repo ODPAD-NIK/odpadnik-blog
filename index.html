@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ODPAD-NIK</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <img src="assets/images/logo-placeholder.png" alt="ODPAD-NIK logo" class="logo">
+      <nav class="main-nav">
+        <a href="#">Domov</a>
+        <a href="#omne">O mne</a>
+        <a href="#blog">Blog</a>
+        <a href="#kategorie">Kategórie</a>
+        <a href="#hladat">Hľadať</a>
+        <a href="#archiv">Archív</a>
+        <a href="#galeria">Galéria</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#sekcia9">Sekcia9</a>
+        <a href="#sekcia10">Sekcia10</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Vitajte na ODPAD‑NIK</h1>
+      <p>Blog o odpadoch, recyklácii a udržateľnom spracovaní materiálov.</p>
+    </section>
+
+    <section id="blog" class="posts-section">
+      <h2>Najnovšie články</h2>
+      <div id="posts"></div>
+    </section>
+
+    <section id="omne">
+      <h2>O mne</h2>
+      <p>Tento blog prevádzkuje ODPAD‑NIK. Zameriavame sa na praktické tipy a know‑how.</p>
+    </section>
+
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>Email: dianazingorova(at)example.com</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2025 ODPAD-NIK</div>
+  </footer>
+
+<script>
+// Simple client-side loader for markdown files placed in /posts/*.md
+const postsList = [
+  "testovaci-clanok.md"
+];
+
+async function loadPost(filename) {
+  try {
+    const res = await fetch('/posts/' + filename);
+    if (!res.ok) throw new Error('Not found');
+    const md = await res.text();
+    const html = marked.parse(md);
+    return { filename, html };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function renderPosts() {
+  const container = document.getElementById('posts');
+  for (const p of postsList) {
+    const post = await loadPost(p);
+    if (!post) continue;
+    const div = document.createElement('article');
+    div.className = 'post';
+    div.innerHTML = post.html;
+    container.appendChild(div);
+  }
+}
+
+renderPosts();
+</script>
+</body>
+</html>

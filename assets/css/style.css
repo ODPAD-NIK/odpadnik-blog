@@ -1,0 +1,16 @@
+:root{
+  --blue:#0b66ff;
+  --dark:#0b2540;
+  --bg:#ffffff;
+}
+body{font-family:Inter,system-ui,Segoe UI,Arial;margin:0;background:var(--bg);color:#111}
+.container{max-width:1000px;margin:0 auto;padding:1rem}
+.site-header{background:#fff;border-bottom:1px solid #eee;padding:1rem 0}
+.logo{height:48px;vertical-align:middle}
+.main-nav{display:inline-block;float:right}
+.main-nav a{margin-left:16px;text-decoration:none;color:var(--dark);font-weight:600}
+.hero{padding:2rem 0;text-align:center}
+.posts-section{padding:1rem 0}
+.post{border:1px solid #e6f0ff;background:#fbfdff;padding:1rem;margin-bottom:1rem;border-radius:8px}
+.site-footer{border-top:1px solid #eee;padding:1rem 0;text-align:center;color:#666;margin-top:2rem}
+@media(max-width:700px){.main-nav{display:none}}
